@@ -16,6 +16,9 @@ const randomDividerImages = [
 
 const Spacer = styled.div`
   margin: 16px 0;
+  img {
+    max-width: 100%;
+  }
 `;
 
 class RandomDivider extends React.Component {

@@ -12,6 +12,7 @@ export const Paragraph = styled.p`
   font-family: ${props => props.theme.bodyFont};
   font-size: 18px;
   margin: 0 0 1em;
+  line-height: 1.337;
 `;
 
 export const SectionHeading = styled.h2`

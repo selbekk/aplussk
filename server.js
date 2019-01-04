@@ -49,6 +49,45 @@ const runTheTrap = async () => {
       }
     });
 
+    // Handle guestbook entries
+    server.post('/guestbook', async (req, res) => {
+      try {
+        const result = await airtable('Guestbook').create({
+          Name: req.body.name,
+          Message: req.body.message,
+        });
+        return res.sendStatus(201);
+      } catch (e) {
+        console.error(
+          'Tried to create a guestbook record, but failed. Data passed was',
+          req.body,
+        );
+        return res.sendStatus(500);
+      }
+    });
+
+    // Retrieve guestbook entries
+    server.get('/guestbook', async (req, res) => {
+      try {
+        airtable('Guestbook')
+          .select()
+          .firstPage((err, entries) => {
+            if (err) {
+              return res.status(500).json(err);
+            }
+            return res.json(
+              entries.reverse().map(entry => ({
+                name: entry.get('Name'),
+                message: entry.get('Message'),
+              })),
+            );
+          });
+      } catch (e) {
+        console.error('Tried to fetch the guestbook, but something went wrong');
+        return res.json([]);
+      }
+    });
+
     // Handle all basic routes
     server.get('*', (...args) => handle(...args));
 

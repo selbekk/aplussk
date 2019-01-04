@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import { FormValidation } from 'calidation';
 import Page from '../components/page';
 import FullPageBackground from '../components/full-page-background';
@@ -26,17 +27,18 @@ class Rsvp extends React.Component {
   };
 
   onSubmit = async ({ fields, isValid }) => {
-    if (isValid) {
-      await fetch('/rsvp', {
-        method: 'post',
-        body: JSON.stringify(fields),
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-      });
-      this.setState({ rsvpRegistered: true });
+    if (!isValid) {
+      return;
     }
+    await fetch('/rsvp', {
+      method: 'post',
+      body: JSON.stringify(fields),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
+    this.setState({ rsvpRegistered: true });
   };
 
   render() {
@@ -102,8 +104,11 @@ class Rsvp extends React.Component {
               src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif"
               alt="the office crewet som danser"
             />
+            <br />
+            <Link href="/gjestebok" passHref>
+              <PrimaryButton>Skriv i gjesteboken vår 👉</PrimaryButton>
+            </Link>
           </Box>
-          Skriv i gjesteboken vår 👉
         </FullPageBackground>
       </Page>
     );
