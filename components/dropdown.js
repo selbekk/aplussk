@@ -2,17 +2,16 @@ import styled from 'styled-components';
 
 const Dropdown = styled.select`
   background: white;
-  border: 10px solid lime;
+  border: 10px solid blue;
   border-radius: 0;
   color: rebeccapurple;
   padding: 10px;
   appearance: none;
-  transform: rotate(5deg);
-  transition: all 0.5s ease-in;
+  transition: all 1s ease;
 
   &:hover,
   &:focus {
-    transform: rotate(-5deg);
+    transform: rotate(360deg);
   }
 `;
 

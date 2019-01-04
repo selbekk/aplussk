@@ -11,12 +11,15 @@ import {
 import PrimaryButton from '../components/primary-button';
 import RandomDivider from '../components/random-divider';
 import Box from '../components/box';
+import Marquee from '../components/marquee';
 
 const Home = () => (
   <Page title="Anne Kristine og Kristofer gifter seg">
     <FullPageBackground backgroundImage="https://media.giphy.com/media/TxVVB6PfWMjE4/giphy.gif">
       <HeroHeading>
-        Velkommen til Anne Kristine og Kristofer sin bryllupsside
+        <Marquee>
+          Velkommen til Anne Kristine og Kristofer sin bryllupsside
+        </Marquee>
       </HeroHeading>
       <Paragraph>
         Hei! Tusen takk for at du tok turen innom hjemmesiden vår! Vi skal gifte

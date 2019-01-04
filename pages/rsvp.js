@@ -55,7 +55,7 @@ class Rsvp extends React.Component {
               <img
                 src="https://media.giphy.com/media/s2qXK8wAvkHTO/giphy.gif"
                 alt="great success"
-                css="display: block"
+                css="display: block; margin: 10px auto"
               />
             </div>
           )}
