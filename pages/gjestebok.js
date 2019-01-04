@@ -41,6 +41,7 @@ class Gjestebok extends React.Component {
       },
     });
     this.setState({ saved: true });
+    window.location.reload();
   };
   render() {
     return (

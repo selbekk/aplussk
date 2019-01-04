@@ -52,7 +52,7 @@ const runTheTrap = async () => {
     // Handle guestbook entries
     server.post('/guestbook', async (req, res) => {
       try {
-        const result = await airtable('Guestbook').create({
+        await airtable('Guestbook').create({
           Name: req.body.name,
           Message: req.body.message,
         });
