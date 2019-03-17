@@ -3,6 +3,7 @@ const helmet = require('helmet');
 const next = require('next');
 const compression = require('compression');
 const bodyParser = require('body-parser');
+const shuffleArray = require('shuffle-array');
 
 require('dotenv').config();
 const Airtable = require('airtable');
@@ -63,6 +64,44 @@ const runTheTrap = async () => {
           req.body,
         );
         return res.sendStatus(500);
+      }
+    });
+
+    // Retrieve guest list
+    server.get('/guests', async (req, res) => {
+      try {
+        airtable('Guests')
+          .select({
+            sort: [{ field: 'Name', direction: 'asc' }],
+          })
+          .firstPage((err, entries) => {
+            if (err) {
+              return res.status(500).json(err);
+            }
+            return res.json(
+              entries
+                .filter(entry => !!entry.get('Name'))
+                .map(entry => {
+                  const facts = [
+                    entry.get('True Fact'),
+                    entry.get('Another True Fact'),
+                    entry.get('False Fact'),
+                  ];
+                  shuffleArray(facts);
+                  return {
+                    name: entry.get('Name'),
+                    table: entry.get('Table'),
+                    facts,
+                    imageSrc:
+                      entry.get('Image URL') ||
+                      'https://media.giphy.com/media/K3Sbp8fOgKye4/giphy.gif',
+                  };
+                }),
+            );
+          });
+      } catch (err) {
+        console.error('Tried to fetch the guests, but something went wrong');
+        return res.status(500).json(err);
       }
     });
 
