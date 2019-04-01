@@ -1,4 +1,13 @@
-import styled from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
+
+const spinning = keyframes`
+from {
+  transform: none;
+}
+to {
+  transform: rotateY(360deg) rotateX(360deg);
+}
+`;
 
 export const HeroHeading = styled.h1`
   color: ${props => props.theme.textColor};
@@ -13,6 +22,11 @@ export const Paragraph = styled.p`
   font-size: 18px;
   margin: 0 0 1em;
   line-height: 1.337;
+  ${props =>
+    props.spinning &&
+    css`
+      animation: ${spinning} 2s linear infinite;
+    `}
 `;
 
 export const SectionHeading = styled.h2`

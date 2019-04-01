@@ -23,10 +23,10 @@ const Home = () => (
       </HeroHeading>
       <Paragraph>
         Hei! Tusen takk for at du tok turen innom hjemmesiden vår! Vi skal gifte
-        oss, og dette er siden du finner alt du trenger på!
+        oss 15. juni, og dette er siden du finner alt du trenger på!
       </Paragraph>
-      <Link passHref href="/rsvp">
-        <PrimaryButton as="a">RSVP</PrimaryButton>
+      <Link passHref href="/onskeliste">
+        <PrimaryButton as="a">Se hva vi ønsker oss</PrimaryButton>
       </Link>
       <RandomDivider />
       <Box>
