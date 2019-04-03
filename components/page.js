@@ -1,9 +1,13 @@
 import React from 'react';
-import { ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import Head from './head';
 import GlobalStyles from './global-styles';
 import { sillyTheme } from '../constants/themes';
 import FancyCursor from '../components/fancy-cursor';
+
+const FontColorWrapper = styled.div`
+  color: ${props => props.fontColor || 'white'};
+`;
 
 const Page = props => (
   <ThemeProvider theme={sillyTheme}>
@@ -15,7 +19,9 @@ const Page = props => (
         image={props.image}
       />
       <FancyCursor />
-      {props.children}
+      <FontColorWrapper fontColor={props.fontColor}>
+        {props.children}
+      </FontColorWrapper>
     </div>
   </ThemeProvider>
 );

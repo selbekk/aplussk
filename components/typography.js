@@ -10,14 +10,14 @@ to {
 `;
 
 export const HeroHeading = styled.h1`
-  color: ${props => props.theme.textColor};
+  color: inherit;
   font-family: ${props => props.theme.headingFont};
   font-size: 48px;
   margin: 0 0 24px;
 `;
 
 export const Paragraph = styled.p`
-  color: ${props => props.theme.textColor};
+  color: inherit;
   font-family: ${props => props.theme.bodyFont};
   font-size: 18px;
   margin: 0 0 1em;
@@ -37,7 +37,7 @@ export const SectionHeading = styled.h2`
 `;
 
 export const LinkText = styled.a`
-  color: ${props => props.theme.textColor};
+  color: inherit;
   &::after {
     content: '👉';
     display: inline-block;

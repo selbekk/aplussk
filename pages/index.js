@@ -14,7 +14,7 @@ import Box from '../components/box';
 import Marquee from '../components/marquee';
 
 const Home = () => (
-  <Page title="Anne Kristine og Kristofer gifter seg">
+  <Page title="Anne Kristine og Kristofer gifter seg" fontColor="white">
     <FullPageBackground backgroundImage="https://media.giphy.com/media/TxVVB6PfWMjE4/giphy.gif">
       <HeroHeading>
         <Marquee>
@@ -27,6 +27,10 @@ const Home = () => (
       </Paragraph>
       <Link passHref href="/onskeliste">
         <PrimaryButton as="a">Se hva vi ønsker oss</PrimaryButton>
+      </Link>
+      <RandomDivider />
+      <Link passHref href="/gjestebok">
+        <PrimaryButton as="a">Skriv i gjesteboken</PrimaryButton>
       </Link>
       <RandomDivider />
       <Box>

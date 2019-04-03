@@ -7,18 +7,8 @@ import TableExplorer from '../components/table-explorer';
 const Gjestene = props => {
   return (
     <Page title="Gjestene">
-      <HeroHeading
-        css={`
-          color: black;
-        `}
-      >
-        Bli bedre kjent med de andre gjestene
-      </HeroHeading>
-      <Paragraph
-        css={`
-          color: black;
-        `}
-      >
+      <HeroHeading>Bli bedre kjent med de andre gjestene</HeroHeading>
+      <Paragraph>
         Det beste med bryllup er å bli bedre kjent med resten av gjestene. Her
         har du muligheten til å bli bedre kjent på 1-2-3!
       </Paragraph>
