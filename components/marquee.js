@@ -9,9 +9,20 @@ const ltr = keyframes`
   }
 `;
 
-const Marquee = styled.div`
+const Container = styled.div`
+  width: 100%;
+  overflow-x: hidden;
+`;
+
+const Text = styled.div`
   animation: 6s infinite linear ${props => (props.reverse ? 'reverse' : '')}
     ${ltr};
 `;
+
+const Marquee = props => (
+  <Container>
+    <Text {...props} />
+  </Container>
+);
 
 export default Marquee;
