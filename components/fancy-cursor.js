@@ -9,6 +9,7 @@ const Star = ({ fill, ...rest }) => (
 );
 
 const StyledStar = styled(Star)`
+  pointer-events: none;
   position: absolute;
   top: 0;
   left: 0;
