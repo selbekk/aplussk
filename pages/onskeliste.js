@@ -43,6 +43,15 @@ export default function Onskeliste() {
             Listen på Christiania Glasmagasin
           </PrimaryButton>
         </Link>
+        <Paragraph css="color: black; max-width: 600px; text-align: center">
+          Om du heller skulle ønske å donere en pengesum til et veldedig formål,
+          ønsker vi at du / dere velger å donere til{' '}
+          <LinkText css="color: black" href="https://kirkensbymisjon.no/">
+            Kirkens Bymisjon
+          </LinkText>
+          . Deres uttrettelige arbeid for de svakerestilte i samfunnet vårt er
+          prisverdig, og noe vi alle burde støtte opp under.
+        </Paragraph>
         <Paragraph>
           <LinkText css="color: black" href="/">
             Tilbake til forsiden
