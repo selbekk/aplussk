@@ -7,7 +7,7 @@ import FullPageBackground from '../components/full-page-background';
 
 export default function Onskeliste() {
   return (
-    <Page title="Ønskeliste">
+    <Page title="Ønskeliste" fontColor="black">
       <FullPageBackground
         backgroundImage="https://media.giphy.com/media/Cv7wrQjYcd6hO/giphy.gif"
         center
