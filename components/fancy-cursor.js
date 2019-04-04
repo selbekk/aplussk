@@ -21,7 +21,8 @@ const colors = ['#FFDC00', '#FF851B', '#FF4136', '#85144b', '#F012BE'];
 
 // This hook returns a list of colors, which are added to on every click
 function useColorList() {
-  const [colorList, setColorList] = useState(colors.slice(0, 3));
+  const [colorList] = useState(colors);
+  /* Breaks link clicks on safari mobile 
   useEffect(() => {
     const handleClick = e => {
       if (colorList.length === colors.length) {
@@ -33,6 +34,7 @@ function useColorList() {
     document.addEventListener('click', handleClick);
     return () => document.removeEventListener('click', handleClick);
   }, []);
+  */
   return colorList;
 }
 
