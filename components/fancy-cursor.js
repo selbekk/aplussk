@@ -53,7 +53,7 @@ function useColorList() {
 function useMousePosition() {
   const [xy, setXy] = useState([0, 0]);
   useEffect(() => {
-    const handleMouseMove = e => setXy([e.clientX, e.clientY]);
+    const handleMouseMove = e => setXy([e.pageX, e.pageY]);
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
   });
