@@ -82,7 +82,7 @@ class Gjestebok extends React.Component {
               <SectionHeading>Gjestebok 📕</SectionHeading>
               <GuestbookEntries>
                 {this.props.entries.map(entry => (
-                  <li key={entry.name}>
+                  <li key={entry.id}>
                     <strong>{entry.name}:</strong>
                     <br />
                     {entry.message}

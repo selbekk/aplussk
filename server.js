@@ -116,6 +116,7 @@ const runTheTrap = async () => {
             }
             return res.json(
               entries.reverse().map(entry => ({
+                id: entry.id,
                 name: entry.get('Name'),
                 message: entry.get('Message'),
               })),
