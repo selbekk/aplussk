@@ -33,6 +33,10 @@ const Home = () => (
         <PrimaryButton as="a">Skriv i gjesteboken</PrimaryButton>
       </Link>
       <RandomDivider />
+      <Link passHref href="/faq">
+        <PrimaryButton as="a">Få svar på masse spørsmål!</PrimaryButton>
+      </Link>
+      <RandomDivider />
       <Box>
         <SectionHeading>Hva trenger jeg å vite</SectionHeading>
         <Paragraph>
