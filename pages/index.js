@@ -25,15 +25,15 @@ const Home = () => (
         Hei! Tusen takk for at du tok turen innom hjemmesiden vår! Vi skal gifte
         oss 15. juni, og dette er siden du finner alt du trenger på!
       </Paragraph>
-      <Link passHref href="/onskeliste">
+      <Link passHref href="/onskeliste" prefetch>
         <PrimaryButton as="a">Se hva vi ønsker oss</PrimaryButton>
       </Link>
       <RandomDivider />
-      <Link passHref href="/gjestebok">
+      <Link passHref href="/gjestebok" prefetch>
         <PrimaryButton as="a">Skriv i gjesteboken</PrimaryButton>
       </Link>
       <RandomDivider />
-      <Link passHref href="/faq">
+      <Link passHref href="/faq" prefetch>
         <PrimaryButton as="a">Få svar på masse spørsmål!</PrimaryButton>
       </Link>
       <RandomDivider />

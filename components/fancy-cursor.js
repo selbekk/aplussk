@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { animated, useTrail } from 'react-spring';
+import ErrorSwallower from './error-swallower';
 
 const Star = ({ fill, ...rest }) => (
   <animated.svg viewBox="0 0 200 200" {...rest}>
@@ -60,29 +61,17 @@ function useMousePosition() {
   return xy;
 }
 
-// Shamelessly stolen from StackOverflow
-// https://stackoverflow.com/questions/4817029/whats-the-best-way-to-detect-a-touch-screen-device-using-javascript/4819886#4819886
-function useTouchDeviceDetection() {
-  const [isTouchDevice, setTouchDevice] = useState(true);
+function useScreenWidth() {
+  const [screenWidth, setScreenWidth] = useState(0);
   useEffect(() => {
-    const prefixes = ' -webkit- -moz- -o- -ms- '.split(' ');
-    const mq = query => window.matchMedia(query).matches;
-
-    if (
-      'ontouchstart' in window ||
-      (window.DocumentTouch && document instanceof DocumentTouch)
-    ) {
-      return true;
-    }
-
-    // include the 'heartz' as a way to have a non matching MQ to help terminate the join
-    // https://git.io/vznFH
-    var query = ['(', prefixes.join('touch-enabled),('), 'heartz', ')'].join(
-      '',
-    );
-    setTouchDevice(mq(query));
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth);
+    };
+    handleResize(); // Run after first mount
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
-  return isTouchDevice;
+  return screenWidth;
 }
 
 export default function FancyCursor() {
@@ -97,14 +86,14 @@ export default function FancyCursor() {
     set({ xy });
   }, [xy]);
 
-  // Touch devices just cause trouble, so let's skip them
-  const isTouchDevice = useTouchDeviceDetection();
-  if (isTouchDevice) {
+  // Mobile and small devices just cause trouble, so let's skip them
+  const screenWidth = useScreenWidth();
+  if (screenWidth < 800) {
     return null;
   }
 
   return (
-    <>
+    <ErrorSwallower>
       {springs.map((spring, index) => (
         <StyledStar
           key={index}
@@ -116,6 +105,6 @@ export default function FancyCursor() {
           }}
         />
       ))}
-    </>
+    </ErrorSwallower>
   );
 }

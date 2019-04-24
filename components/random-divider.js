@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 const randomDividerImages = [
@@ -21,16 +21,18 @@ const Spacer = styled.div`
   }
 `;
 
-class RandomDivider extends React.Component {
-  image =
-    randomDividerImages[Math.floor(Math.random() * randomDividerImages.length)];
-  render() {
-    return (
-      <Spacer>
-        <img src={this.image} role="presentation" />
-      </Spacer>
+function RandomDivider() {
+  const [image, setImage] = useState();
+  useEffect(() => {
+    setImage(
+      randomDividerImages[
+        Math.floor(Math.random() * randomDividerImages.length)
+      ],
     );
-  }
+  }, []);
+  return (
+    <Spacer>{image && <img src={image} role="presentation" alt="" />}</Spacer>
+  );
 }
 
 export default RandomDivider;
