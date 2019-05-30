@@ -36,8 +36,12 @@ const TableName = styled.span`
   color: hotpink;
   background-color: black;
   animation: 1s ${blink} linear infinite;
-  display: inline-block;
+  display: block;
   padding: 10px;
+
+  ${mq.mediumUp} {
+    display: inline-block;
+  }
 `;
 
 const Guest = styled.div`
@@ -80,14 +84,13 @@ const GuestSelector = styled.select`
   border: 1px solid currentColor;
 `;
 
-const Tables = styled.ul`
+const Tables = styled.aside`
   border: 1px dashed #333;
   display: flex;
   align-items: space-between;
   justify-content: center;
-  margin: 0 auto;
-  padding: 10px;
-  list-style: none;
+  margin: 10px auto;
+  padding: 0 10px;
   flex-wrap: wrap;
   max-width: 600px;
 `;
@@ -107,8 +110,9 @@ const bounce = keyframes`
 }
 `;
 
-const Table = styled.li`
-  background-color: ${props => (props.isSelected ? 'white' : 'none')};
+const Table = styled.button`
+  appearance: none;
+  background: ${props => (props.isSelected ? 'white' : 'none')};
   ${props =>
     props.isSelected &&
     css`
@@ -122,6 +126,7 @@ const Table = styled.li`
   align-items: center;
   justify-content: center;
   margin: 10px;
+  padding: 0;
   height: 100%;
   white-space: no-wrap;
 
@@ -133,12 +138,20 @@ const Table = styled.li`
     border-radius: 0;
     height: 40px;
     flex: 1 0 100%;
+    &::before {
+      display: none;
+    }
   }
 
   &::before {
     content: '';
     padding-top: 100%;
     float: left;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: red;
   }
 `;
 
@@ -158,9 +171,17 @@ const tableOrder = [
 function TableExplorer(props) {
   const { guests } = props;
   const [selectedGuestId, setSelectedGuestId] = useState('');
+  const [selectedTable, setSelectedTable] = useState(null);
 
   const handleSelectedGuestChange = e => {
     setSelectedGuestId(e.target.value);
+    setSelectedTable(null);
+  };
+
+  const handleTableClick = e => {
+    e.preventDefault();
+    setSelectedGuestId('');
+    setSelectedTable(e.target.innerText);
   };
 
   const selectedGuest = useMemo(
@@ -168,12 +189,16 @@ function TableExplorer(props) {
     [selectedGuestId, guests],
   );
 
-  const otherPeopleAtTable = useMemo(() => {
-    if (!selectedGuest) {
+  const peopleAtTable = useMemo(() => {
+    if (!selectedGuest && !selectedTable) {
       return [];
     }
-    return guests.filter(guest => guest.table === selectedGuest.table);
-  }, [selectedGuest, guests]);
+    return selectedGuest
+      ? guests.filter(guest => guest.table === selectedGuest.table)
+      : guests.filter(guest => guest.table === selectedTable);
+  }, [selectedGuest, guests, selectedTable]);
+
+  const showGuestList = !!(selectedGuest || selectedTable);
 
   return (
     <div>
@@ -193,24 +218,34 @@ function TableExplorer(props) {
         ))}
       </GuestSelector>
       {selectedGuest && (
-        <div>
-          <TableHeading>
-            Du sitter på bordet{' '}
-            <TableName>🎉 {selectedGuest.table} 🎉</TableName>
-          </TableHeading>
-          <Tables>
-            {tableOrder.map((tableName, index) => (
-              <Table
-                key={tableName}
-                isSelected={tableName === selectedGuest.table}
-              >
-                {tableName}
-              </Table>
-            ))}
-          </Tables>
+        <TableHeading>
+          Du sitter på bordet <TableName>🎉 {selectedGuest.table} 🎉</TableName>
+        </TableHeading>
+      )}
+      {selectedTable && (
+        <TableHeading>
+          <TableName>🎉 {selectedTable} 🎉</TableName>
+        </TableHeading>
+      )}
+      <Tables>
+        {tableOrder.map(tableName => (
+          <Table
+            key={tableName}
+            isSelected={
+              tableName ===
+              (selectedGuest ? selectedGuest.table : selectedTable)
+            }
+            onClick={handleTableClick}
+          >
+            {tableName}
+          </Table>
+        ))}
+      </Tables>
+      {showGuestList && (
+        <>
           <p>De som sitter på bordet er</p>
           <PeopleList>
-            {otherPeopleAtTable.map(other => (
+            {peopleAtTable.map(other => (
               <PeopleListItem key={other.id}>
                 <Guest>
                   <GuestImage src={other.imageSrc} />
@@ -227,7 +262,7 @@ function TableExplorer(props) {
               </PeopleListItem>
             ))}
           </PeopleList>
-        </div>
+        </>
       )}
     </div>
   );
