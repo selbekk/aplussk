@@ -17,7 +17,9 @@ const Page = props => (
         title={props.title}
         description={props.description}
         image={props.image}
-      />
+      >
+        {props.head}
+      </Head>
       <FancyCursor />
       <FontColorWrapper fontColor={props.fontColor}>
         {props.children}

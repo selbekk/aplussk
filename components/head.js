@@ -1,10 +1,10 @@
-import React from 'react'
-import NextHead from 'next/head'
-import { string } from 'prop-types'
+import React from 'react';
+import NextHead from 'next/head';
+import { string, node } from 'prop-types';
 
-const defaultDescription = ''
-const defaultOGURL = ''
-const defaultOGImage = ''
+const defaultDescription = '';
+const defaultOGURL = '';
+const defaultOGImage = '';
 
 const Head = props => (
   <NextHead>
@@ -31,14 +31,16 @@ const Head = props => (
     <meta property="og:image" content={props.ogImage || defaultOGImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    {props.children}
   </NextHead>
-)
+);
 
 Head.propTypes = {
+  children: node,
   title: string,
   description: string,
   url: string,
-  ogImage: string
-}
+  ogImage: string,
+};
 
-export default Head
+export default Head;

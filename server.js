@@ -89,6 +89,7 @@ const runTheTrap = async () => {
                   ];
                   shuffleArray(facts);
                   return {
+                    id: entry.id,
                     name: entry.get('Name'),
                     table: entry.get('Table'),
                     facts,
