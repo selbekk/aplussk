@@ -25,6 +25,9 @@ const Home = () => (
         Hei! Tusen takk for at du tok turen innom hjemmesiden vår! Vi skal gifte
         oss 15. juni, og dette er siden du finner alt du trenger på!
       </Paragraph>
+      <Link passHref href="/gjestene" prefetch>
+        <PrimaryButton as="a">Se hvor du skal sitte</PrimaryButton>
+      </Link>
       <Link passHref href="/onskeliste" prefetch>
         <PrimaryButton as="a">Se hva vi ønsker oss</PrimaryButton>
       </Link>

@@ -48,6 +48,7 @@ const Guest = styled.div`
   margin: 10px;
   border: 3px dotted orange;
   padding: 10px;
+  @@æ@
 `;
 
 const GuestImage = styled.div`
