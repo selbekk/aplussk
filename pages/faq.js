@@ -95,6 +95,14 @@ const Home = () => (
       Om ånden skulle komme over deg på selve dagen, ber vi deg også si ifra.
       Sånn, bare fordi 🤷‍
     </Paragraph>
+    <RandomDivider />
+    <SectionHeading>Hva skal jeg ha på meg?</SectionHeading>
+    <Paragraph>
+      Hva du vil, sånn egentlig. Brudgommen skal ha på seg blå dress - men ingen
+      blir fornærma om du stiller opp i smoking. Vi prøver å holde på en slags
+      "sommerlig" stil, så om man har en flott, lang sommerkjole (helst ikke
+      hvit, visstnok), så er det vel så fint som en ballkjole.
+    </Paragraph>
   </Page>
 );
 
