@@ -4,7 +4,7 @@
     "dev": "node server.js",
     "build": "next build",
     "start": "NODE_ENV=production node server.js",
-    "predeploy": "run run build",
+    "predeploy": "npm run build",
     "deploy": "now --public -e AIRTABLE_API_KEY=@airtable-api-key --target production"
   },
   "dependencies": {
