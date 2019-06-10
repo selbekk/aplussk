@@ -35,7 +35,6 @@ const Home = () => (
       <Link passHref href="/gjestebok" prefetch>
         <PrimaryButton as="a">Skriv i gjesteboken</PrimaryButton>
       </Link>
-      <RandomDivider />
       <Link passHref href="/faq" prefetch>
         <PrimaryButton as="a">Få svar på masse spørsmål!</PrimaryButton>
       </Link>
