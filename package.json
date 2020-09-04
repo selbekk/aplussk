@@ -8,7 +8,7 @@
     "deploy": "now --public -e AIRTABLE_API_KEY=@airtable-api-key && now alias"
   },
   "dependencies": {
-    "airtable": "^0.5.8",
+    "airtable": "^0.7.2",
     "body-parser": "^1.18.3",
     "calidation": "^1.7.0",
     "compression": "^1.7.3",
